@@ -55,7 +55,7 @@ const HomePage = () => {
             key={card.id}
             className="flex  w-1/2 flex-col mx-auto items-center  h-screen"
           >
-            <h1 className="py-10">{card.name}</h1>
+            <h1 className="py-10 mb-10">{card.name}</h1>
             <img
               src={card.image_url}
               alt={card.name}
