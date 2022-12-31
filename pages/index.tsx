@@ -69,7 +69,6 @@ const HomePage = () => {
             >
               Vote
             </button>
-            <p className="px-10">{card.desc}</p>
           </div>
         ))}
       </div>
