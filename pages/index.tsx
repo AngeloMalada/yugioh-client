@@ -55,12 +55,12 @@ const HomePage = () => {
             key={card.id}
             className="flex  w-1/2 flex-col mx-auto items-center  h-screen"
           >
-            <h1 className="py-10 mb-10">{card.name}</h1>
+            <h1 className="py-10 h-32 text-center px-4 text-sm">{card.name}</h1>
             <img
               src={card.image_url}
               alt={card.name}
               loading="lazy"
-              className=" aspect-auto w-64 pb-20 rounded-lg"
+              className=" aspect-auto w-24 lg:w-64 pb-20 rounded-lg"
               // onClick={handleClick(card.name)}
             />
             <button

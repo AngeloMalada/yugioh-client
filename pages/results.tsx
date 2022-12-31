@@ -31,7 +31,7 @@ const results = () => {
   return (
     <div>
       <Link href={"/"}>
-        <h1 className="text-4xl text-center p-10 mt-10 h-[10vh] w-fit mx-auto bg-blue-500 rounded-xl">
+        <h1 className="text-4xl text-center  w-fit mx-auto mt-10 p-10 bg-blue-500 rounded-xl">
           Home
         </h1>
       </Link>
