@@ -6,7 +6,7 @@ type Props = {};
 const Header = (props: Props) => {
   return (
     //create a navbar with a logo and a button to go to the login page
-    <div className="h-[5vh]  flex items-center justify-between px-10">
+    <div className="h-[5vh]  flex items-center justify-between px-10 mt-8">
       LOGO
       <Navbar />
     </div>

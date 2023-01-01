@@ -63,7 +63,7 @@ const HomePage = () => {
                 />
                 <button
                   onClick={() => handleClick(card.id)}
-                  className="bg-[#222] hover:bg-[#585858] text-white font-bold py-2 px-4 rounded"
+                  className="bg-[#222] lg:hover:bg-[#585858] text-white font-bold py-2 px-4 rounded"
                 >
                   Vote
                 </button>
