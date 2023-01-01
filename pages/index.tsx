@@ -19,7 +19,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       // fetch from api
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getCards`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/getCards`);
       const json = await res.json();
 
       setData(json);
@@ -35,7 +35,7 @@ const HomePage = () => {
     //set name against to be the card that does not match the name
     const idAgainst = data?.cards.filter((card) => card.id !== idFor)[0].id;
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/vote?a=${idAgainst}&b=${idFor}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/vote?a=${idAgainst}&b=${idFor}`,
       {
         method: "POST",
       }
@@ -43,35 +43,39 @@ const HomePage = () => {
   };
 
   return (
-    <div>
-      <Link href={"/results"}>
-        <h1 className="text-4xl text-center  w-fit mx-auto mt-10 p-10 bg-blue-500 rounded-xl">
-          Results
-        </h1>
-      </Link>
-      <div className="flex flex-row">
-        {data?.cards.map((card) => (
-          <div
-            key={card.id}
-            className="flex  w-1/2 flex-col mx-auto items-center  h-screen"
-          >
-            <h1 className="py-10 h-32 text-center px-4 text-sm">{card.name}</h1>
-            <img
-              src={card.image_url}
-              alt={card.name}
-              loading="lazy"
-              className=" aspect-auto w-24 lg:w-64 pb-20 rounded-lg"
-              // onClick={handleClick(card.name)}
-            />
-            <button
-              onClick={() => handleClick(card.id)}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    <div className="h-[90vh] flex justify-center items-center">
+      {data ? (
+        <div className="flex flex-row  w-full">
+          {data?.cards.map((card) => (
+            <div
+              key={card.id}
+              className="flex  w-1/2  items-center justify-center h-[90vh]"
             >
-              Vote
-            </button>
-          </div>
-        ))}
-      </div>
+              <div className="  flex flex-col items-center p-14 rounded-xl lg:hover:shadow-xl ">
+                <h1 className="py-10 h-32 text-center px-4 text-sm font-bold flex justify-center items-center">
+                  {card.name}
+                </h1>
+                <img
+                  src={card.image_url}
+                  alt={card.name}
+                  className=" aspect-square w-24 lg:w-96 mb-20 rounded-lg object-contain"
+                  // onClick={handleClick(card.name)}
+                />
+                <button
+                  onClick={() => handleClick(card.id)}
+                  className="bg-[#222] hover:bg-[#585858] text-white font-bold py-2 px-4 rounded"
+                >
+                  Vote
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>
+          <h1 className="text-2xl text-center font-bold">Loading</h1>
+        </div>
+      )}
     </div>
   );
 };

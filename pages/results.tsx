@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { MdThumbUpAlt, MdThumbDownAlt } from "react-icons/md";
 
 type Result = {
   results: {
@@ -19,7 +20,7 @@ const results = () => {
   useEffect(() => {
     const fetchData = async () => {
       // fetch from jsonplaceholder
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/results`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/results`);
       const json = await res.json();
 
       setData(json);
@@ -29,32 +30,31 @@ const results = () => {
 
   console.log(data?.results[0]);
   return (
-    <div>
-      <Link href={"/"}>
-        <h1 className="text-4xl text-center  w-fit mx-auto mt-10 p-10 bg-blue-500 rounded-xl">
-          Home
-        </h1>
-      </Link>
+    <div className="font-bold">
       {data ? (
         <div>
           {data?.results.map((card) => (
             <div
               key={card.name}
-              className="flex  w-fit flex-col mx-auto items-center  h-fit"
+              className="flex w-[80vw] justify-between flex-col lg:flex-row mx-auto  p-4  m-8 rounded-xl shadow-lg hover:shadow-slate-400"
             >
-              <h1 className="py-10">{card.name}</h1>
-              <img
-                src={card.image_url}
-                alt={card.name}
-                loading="lazy"
-                className=" aspect-auto w-24 pb-20 rounded-lg"
-              />
-              <div className="flex flex-row gap-4 w-fit">
-                <h1 className="py-2">{card._count.votesFor} Votes for</h1>
-                <h1 className="py-2">
-                  {card._count.votesAgainst} Votes agaisnt
+              <div className="flex flex-col mx-auto items-center gap-4 w-[50%]">
+                <h1 className="text-center ">{card.name}</h1>
+                <img
+                  src={card.image_url}
+                  alt={card.name}
+                  loading="lazy"
+                  className=" aspect-auto w-24 lg:w-80 mb-5 rounded-lg"
+                />
+              </div>
+              <div className="flex flex-row gap-4 text-xl px-10 items-center text-center mx-auto">
+                <h1 className="py-2 flex flex-row text-center items-center gap-2">
+                  {card._count.votesFor} <MdThumbUpAlt />
                 </h1>
-                <h1 className="py-2">
+                <h1 className="py-2 flex flex-row text-center items-center gap-2">
+                  {card._count.votesAgainst} <MdThumbDownAlt />
+                </h1>
+                <h1 className="py-2 flex text-center items-center">
                   {card._count.votesAgainst === 0 && card._count.votesFor !== 0
                     ? "100%"
                     : card._count.votesAgainst !== 0 &&
@@ -62,7 +62,8 @@ const results = () => {
                     ? "0%"
                     : (card._count.votesFor /
                         (card._count.votesFor + card._count.votesAgainst)) *
-                      100}
+                        100 +
+                      "%"}
                 </h1>
               </div>
             </div>
