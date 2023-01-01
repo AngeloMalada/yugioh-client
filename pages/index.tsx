@@ -58,7 +58,7 @@ const HomePage = () => {
                 <img
                   src={card.image_url}
                   alt={card.name}
-                  className=" aspect-square w-24 lg:w-96 mb-20 rounded-lg object-contain"
+                  className=" aspect-square w-24 lg:w-96 mb-20 rounded-lg object-cover"
                   // onClick={handleClick(card.name)}
                 />
                 <button
